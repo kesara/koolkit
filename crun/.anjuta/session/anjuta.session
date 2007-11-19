@@ -1,0 +1,9 @@
+
+[Anjuta]
+Geometry=1280x724+5+50
+
+[File Loader]
+Files=file:///home/kesara/Projects/crun/main.c#56
+
+[Execution]
+Run in terminal=2
