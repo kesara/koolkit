@@ -32,9 +32,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 bin_PROGRAMS = crun$(EXEEXT)
 subdir = .
-DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
+DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/config.h.in \
-	$(top_srcdir)/configure depcomp install-sh missing
+	$(top_srcdir)/configure AUTHORS COPYING ChangeLog INSTALL NEWS \
+	depcomp install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -108,16 +109,16 @@ MAKEINFO = ${SHELL} /home/kesara/Projects/crun/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
 PACKAGE = crun
-PACKAGE_BUGREPORT = 
+PACKAGE_BUGREPORT = http://code.google.com/p/koolkit/
 PACKAGE_NAME = crun
-PACKAGE_STRING = crun 0.1
+PACKAGE_STRING = crun 0.1.1
 PACKAGE_TARNAME = crun
-PACKAGE_VERSION = 0.1
+PACKAGE_VERSION = 0.1.1
 PATH_SEPARATOR = :
 SET_MAKE = 
 SHELL = /bin/sh
 STRIP = 
-VERSION = 0.1
+VERSION = 0.1.1
 abs_builddir = /home/kesara/Projects/crun
 abs_srcdir = /home/kesara/Projects/crun
 abs_top_builddir = /home/kesara/Projects/crun
