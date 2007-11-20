@@ -1,0 +1,8 @@
+* 14 - NOV - 2007 Version 0.1 (beta)
+	+ Intial Version
+* 21 - NOV - 2007 Version 0.1.1 (beta)
+	+ Minor Bug Fixes
+	+ Waits for last process to be executed
+	+ Error output is written to standard error (stderr)
+	+ Added "--help" and "--version" options
+
