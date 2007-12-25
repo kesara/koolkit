@@ -1,0 +1,57 @@
++--------------+
+| Introduction |
++--------------+
+
+"papercut" is command line based Rock, Paper, Scissors game for Unix based
+operating systems like Linux, BSD etc. User can play the game by entering users
+choice that is either, Rock (R or r), Paper (P or p), Scissors (S or s).
+Game play is explained in How to play section. papercut also stores user
+statics. i.e. number of wins, losses and draws.
+
++-------------+
+| How to Play |
++-------------+
+
+ * Start the game by executing papercut or papercut [number of rounds]
+   If number of rounds not specified, game will have a standard of 3 rounds.
+   (See Usage section)
+    * Make your choice. (Select your wepon)
+	+ For Rock, enter R or r
+	+ For Paper, enter P or p
+	+ For Scissors, enter S or s
+    * If you can beat machine's wepon, if both wepons are same game is a draw,
+      other wise you will lose. (Explained in Game Rules section)
+    * At the end of game rounds, your current sessions stats and overal stats
+      will be displayed.
+
+Usage
+=====
+ papercut [number of rounds]
+ (If no number of rounds given, game will have 3 rounds)
+
+Other Command Line Parameters
+=============================
+    * --stat - print user statictics.
+    * --help - print help
+    * --version - print version 
+
+Game Rules
+==========
+ Rules are similer to common Rock, Paper, Scissors game.
+    * Rock beats Scissors
+    * Paper beats Rock
+    * Scissors beats Paper 
+
++------------------+
+| More Information |
++------------------+
+
+Web Site	: http://koolkit.googlecode.com/
+Project Wiki	: http://code.google.com/p/koolkit/wiki/papercut
+Official Blog	: http://kesara.blogspot.com/
+
+------------------------------------------------------------------
+Copyright (C) 2007 Kesara Nanayakkara Rathnayake
+
+This file is free documentation; the Kesara Nanayakkara Rathnayake
+gives unlimited permission to copy, distribute and modify it.
