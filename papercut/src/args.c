@@ -36,7 +36,7 @@ int
 process_args (int argc, char **argv)
 {
 	program_name = argv[0];			// Set program name
-	program_version = "0.1.0 (beta)";	// Set program version
+	program_version = "0.1.1 (beta)";	// Set program version
 
 	if (argc == 1)		// If no parameters standard number of rounds.
 	{
