@@ -109,7 +109,7 @@ void print_help(void)
 {
     print_usage();
     fprintf(stdout,
-             "Executes an user defined programs multiple times with a user ");
+             "\nExecutes an user defined programs multiple times with a user\n");
     fprintf(stdout,
              " defined time interval.\n");
     fprintf(stdout,
@@ -117,7 +117,7 @@ void print_help(void)
     fprintf(stdout,
              "  --version\tprint version\n");
     fprintf(stdout,
-             "\nReport bugs to http://code.google.com/p/koolkit/issues/list\n");
+             "\nReport bugs to http://code.google.com/p/koolkit/issues/\n");
 }
 
 /*
@@ -125,16 +125,16 @@ void print_help(void)
  */
 void print_version(void)
 {
-    fprintf(stdout, "%s %s (beta)\n", program_name, program_version);
-    fprintf(stdout, "Copyright (C) 2007-2012 Kesara Nanayakkara Rathnayake\n");
-    fprintf(stdout, "This program is free software: you can redistribute it and/or modify");
-    fprintf(stdout, "it under the terms of the GNU General Public License as published by");
-    fprintf(stdout, "the Free Software Foundation, either version 3 of the License, or");
-    fprintf(stdout, "(at your option) any later version.\n");
-    fprintf(stdout, "This program is distributed in the hope that it will be useful,");
-    fprintf(stdout, "but WITHOUT ANY WARRANTY; without even the implied warranty of");
-    fprintf(stdout, "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the");
-    fprintf(stdout, "GNU General Public License for more details.\n");
-    fprintf(stdout, "You should have received a copy of the GNU General Public License");
-    fprintf(stdout, "along with this program.  If not, see <http://www.gnu.org/licenses/>.");
+    fprintf(stdout, "%s %s (beta)\n\n", program_name, program_version);
+    fprintf(stdout, "Copyright (C) 2007-2012 Kesara Nanayakkara Rathnayake\n\n");
+    fprintf(stdout, "This program is free software: you can redistribute it and/or modify\n");
+    fprintf(stdout, "it under the terms of the GNU General Public License as published by\n");
+    fprintf(stdout, "the Free Software Foundation, either version 3 of the License, or\n");
+    fprintf(stdout, "(at your option) any later version.\n\n");
+    fprintf(stdout, "This program is distributed in the hope that it will be useful,\n");
+    fprintf(stdout, "but WITHOUT ANY WARRANTY; without even the implied warranty of\n");
+    fprintf(stdout, "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n");
+    fprintf(stdout, "GNU General Public License for more details.\n\n");
+    fprintf(stdout, "You should have received a copy of the GNU General Public License\n");
+    fprintf(stdout, "along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\n");
 }
