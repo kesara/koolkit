@@ -6,6 +6,6 @@
 	+ Error output is written to standard error (stderr)
 	+ Added "--help" and "--version" options
 * 19 - DEC - 2012 Version 0.1.2 (beta)
-  + Minor bug fixes.
+	+ Minor bug fixes.
 	+ Performance enhancement.
 	+ Upgraded program licence from GPL v2 to  GPL v3.
