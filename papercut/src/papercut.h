@@ -1,6 +1,6 @@
 /*
  * papercut.h
- * Copyright (C) 2007 Kesara Nanayakkara Rathnayake <kesara@bcs.org>
+ * Copyright (C) 2007-2012 Kesara Nanayakkara Rathnayake <kesara@kesara.lk>
  *
  * This file is part of papercut.
  * 
@@ -25,17 +25,16 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define	STDROUNDS	3		/* Standard number of rounds */
-#define	STATFILE	".papercut"	/* stat file name */
-#define SLEEPTIME	3		/* random engine sleep time */
+#define STDROUNDS   3           // Standard number of rounds
+#define STATFILE    ".papercut" // stat file name
 
-/* Global Veriables */
-char *program_name;			/* Program Name */
-char *program_version;			/* Program Version */
+/* Globals Variables */
+char *program_name;             // Program Name
+char *program_version;          // Program Version
 
 /* stats data structure */
 struct stats {
-	int l;		// Number of loses
-	int w;		// Number of wins
-	int d;		// Number of draws
+    int l;                      // Number of loses
+    int w;                      // Number of wins
+    int d;                      // Number of draws
 };

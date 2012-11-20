@@ -1,6 +1,6 @@
 /*
  * main.c
- * Copyright (C) 2007 Kesara Nanayakkara Rathnayake <kesara@bcs.org>
+ * Copyright (C) 2007-2012 Kesara Nanayakkara Rathnayake <kesara@kesara.lk>
  *
  * This file is part of papercut.
  * 
@@ -21,237 +21,227 @@
 
 #include "papercut.h"
 
-#define GT(A, B)	((A) > (B) ? 1 : 0)  
+#define GT(A, B) ((A) > (B) ? 1 : 0)  
 
 /* Variables */
-short	u_choice;		// User's choice
-short	m_choice;		// Machine's choice
-struct	stats current_stat;	// Session stats
-short	random_choice;
-short	randomizer;
-pthread_t select_thread;	
+short       u_choice;           // User's choice
+short       m_choice;           // Machine's choice
+struct      stats current_stat; // Session stats
+short       random_choice;
+short       randomizer;
+pthread_t   select_thread;    
 
 /* Prototypes */
-void	play			(void);
-int	valid			(int);
-void	match			(void);
-int	get_result		(void);
-void	print_wepon		(char*, int);
-void*	random_engine		(void*);
+void    play            (void);
+int     valid           (int);
+void    match           (void);
+int     get_result      (void);
+void    print_wepon     (char*, int);
+void*   random_engine   (void*);
 
 /*
  * main: Main method
  */
-int
-main (int argc, char **argv)
+int main (int argc, char **argv)
 {
-	/* Create and start random_engine Thread */
-	random_choice = 0;
-	randomizer = 1;
+    /* Create and start random_engine Thread */
+    random_choice = 0;
+    randomizer = 1;
 
-	pthread_create(&select_thread, NULL, random_engine, NULL);
+    pthread_create(&select_thread, NULL, random_engine, NULL);
 
-	/* Set current session stats to zero */
-	current_stat.w = 0;
-	current_stat.l = 0;
-	current_stat.d = 0;
+    /* Set current session stats to zero */
+    current_stat.w = 0;
+    current_stat.l = 0;
+    current_stat.d = 0;
 
-	int i, limit;
-	
-	/* Identify arguments */
-	limit = process_args (argc, argv);
-	
-	/* Play */
-	for (i = 0; i < limit; i++)
-	{
-		play();
-	}
+    int i, limit;
+    
+    /* Identify arguments */
+    limit = process_args (argc, argv);
+    
+    /* Play */
+    for (i = 0; i < limit; i++)
+    {
+        play();
+    }
 
-	/* Stop random_engine Thread */
-	randomizer = 0;
-	pthread_join (select_thread, NULL);
+    /* Stop random_engine Thread */
+    randomizer = 0;
+    pthread_join (select_thread, NULL);
 
-	/* Display stats and update stats file */
-	process_stats (current_stat);
+    /* Display stats and update stats file */
+    process_stats (current_stat);
 
-	exit (EXIT_SUCCESS);
+    exit (EXIT_SUCCESS);
 }
 
 /*
  * play: Gets the user choice.
  */
-void
-play (void)
+void play (void)
 {
-	printf ("Your weapon? (R)ock (P)aper (S)cissors : ");
-	while (!valid (getchar ()));
+    printf ("Your weapon? (R)ock (P)aper (S)cissors : ");
+    while (!valid (getchar ()));
 
-	match ();
+    match ();
 }
 
 /*
  * valid: Validate user input.
  * Return 0, if valid input; 1 otherwise.
  */
-int
-valid (int value)
+int valid (int value)
 {
-	if (value == 'r' || value == 'R')
-	{
-		u_choice = 0;
-		return 1;
-	}
-	else if (value == 'p' || value == 'P')
-	{
-		u_choice = 1;
-		return 1;
-	}
-	else if (value == 's' || value == 'S')
-	{
-		u_choice = 3;
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
+    if (value == 'r' || value == 'R')
+    {
+        u_choice = 0;
+        return 1;
+    }
+    else if (value == 'p' || value == 'P')
+    {
+        u_choice = 1;
+        return 1;
+    }
+    else if (value == 's' || value == 'S')
+    {
+        u_choice = 3;
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 /*
  * match: Perform the game.
  */
-void
-match (void)
+void match (void)
 {
-	/* Stop the random_engine thread */
-	randomizer = 0;
-	pthread_join (select_thread, NULL);
-	
-	/* Get the machine choice */
-	m_choice = random_choice;
+    /* Stop the random_engine thread */
+    randomizer = 0;
+    pthread_join (select_thread, NULL);
+    
+    /* Get the machine choice */
+    m_choice = random_choice;
 
-	if (m_choice == 2)
-	{
-		m_choice = 3;
-	}
+    if (m_choice == 2)
+    {
+        m_choice = 3;
+    }
 
-	/* Start the random_engine thread */
-	randomizer = 1;
-	pthread_create(&select_thread, NULL, random_engine, NULL);
+    /* Start the random_engine thread */
+    randomizer = 1;
+    pthread_create(&select_thread, NULL, random_engine, NULL);
 
-	/* Print wepons */
-	print_wepon ("You", u_choice);
-	print_wepon ("Machine", m_choice);
+    /* Print wepons */
+    print_wepon ("You", u_choice);
+    print_wepon ("Machine", m_choice);
 
-	/* Print result */
-	switch (get_result ())
-	{
-		case 0:
-			printf("Youe lose. :-(\n\n");
-			current_stat.l++;
-			break;
-		case 1:
-			printf("You win. :-)\n\n");
-			current_stat.w++;
-			break;
-		case 2:
-			printf("It's a draw.\n\n");
-			current_stat.d++;
-			break;
-	}
+    /* Print result */
+    switch (get_result ())
+    {
+        case 0:
+            printf("Youe lose. :-(\n\n");
+            current_stat.l++;
+            break;
+        case 1:
+            printf("You win. :-)\n\n");
+            current_stat.w++;
+            break;
+        case 2:
+            printf("It's a draw.\n\n");
+            current_stat.d++;
+            break;
+    }
 }
 
 /*
  * get_result: Identify the game result and print.
  * Returns,
- *	0 - draw
- * 	1 - win
- * 	2 - lose
+ *    0 - draw
+ *     1 - win
+ *     2 - lose
  */
-int
-get_result (void)
+int get_result (void)
 {
-	if (u_choice == m_choice)
-	{
-		printf("Both are equaly tough.\n");
-		return 2;
-	}
-	else if (u_choice +  m_choice == 1)
-	{
-		printf("Paper covers rock; paper wins.\n");
-		if (GT(u_choice, m_choice))
-		{
-			return 1;
-		}
-		else
-		{
-			return 0;
-		}
-	}
-	else if (u_choice +  m_choice == 4)
-	{
-		printf("Scissors cut paper; scissors wins.\n");
-		if (GT(u_choice, m_choice))
-		{
-			return 1;
-		}
-		else
-		{
-			return 0;
-		}
-	}
-	else	/* u_choice +  m_choice == 3 */
-	{
-		printf ("Rock smashes scissors; rock wins.\n");
-		if (GT (u_choice, m_choice))
-		{
-			return 0;
-		}
-		else
-		{
-			return 1;
-		}
-	}
+    if (u_choice == m_choice)
+    {
+        printf("Both are equaly tough.\n");
+        return 2;
+    }
+    else if (u_choice +  m_choice == 1)
+    {
+        printf("Paper covers rock; paper wins.\n");
+        if (GT(u_choice, m_choice))
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else if (u_choice +  m_choice == 4)
+    {
+        printf("Scissors cut paper; scissors wins.\n");
+        if (GT(u_choice, m_choice))
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else    /* u_choice +  m_choice == 3 */
+    {
+        printf ("Rock smashes scissors; rock wins.\n");
+        if (GT (u_choice, m_choice))
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
 }
 
 /*
  * print_wepon: Print username and the wepon.
  */
-void
-print_wepon (char *uid, int wepon)
+void print_wepon (char *uid, int wepon)
 {
-	if (wepon == 0)
-	{
-		printf ("%s rock, ", uid);
-	}
-	else if (wepon == 1)
-	{
-		printf ("%s paper, ", uid);
-	}
-	else
-	{
-		printf("%s scissors, ", uid);
-	}
+    if (wepon == 0)
+    {
+        printf ("%s rock, ", uid);
+    }
+    else if (wepon == 1)
+    {
+        printf ("%s paper, ", uid);
+    }
+    else
+    {
+        printf("%s scissors, ", uid);
+    }
 }
 
 /*
  * random_engine: Get a random number between 0 and 2.
  */
-void*
-random_engine (void *arg)
+void* random_engine (void *arg)
 {
-	while (randomizer)		// Do while randomizer is not -1.
-	{
-		random_choice++;
+    while (randomizer)        // Do while randomizer is not -1.
+    {
+        random_choice++;
 
-		if (random_choice > 2)
-		{
-			random_choice = 0;
-		}
+        if (random_choice > 2)
+        {
+            random_choice = 0;
+        }
+    }
 
-		/* Issue #1 : CUP Usage Solution */
-		sleep (SLEEPTIME);
-	}
-
-	pthread_exit (0);
+    pthread_exit (0);
 }
