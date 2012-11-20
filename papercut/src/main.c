@@ -241,7 +241,9 @@ void* random_engine (void *arg)
         {
             random_choice = 0;
         }
-    }
 
+        /* Issue #1 : CUP Usage Solution */
+        sleep (SLEEPTIME);
+    }
     pthread_exit (0);
 }

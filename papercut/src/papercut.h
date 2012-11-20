@@ -27,6 +27,7 @@
 
 #define STDROUNDS   3           // Standard number of rounds
 #define STATFILE    ".papercut" // stat file name
+#define SLEEPTIME   2           // random engine sleep time
 
 /* Globals Variables */
 char *program_name;             // Program Name
