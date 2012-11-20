@@ -66,6 +66,8 @@ am_papercut_OBJECTS = main.$(OBJEXT) args.$(OBJEXT) errors.$(OBJEXT) \
 	stat.$(OBJEXT)
 papercut_OBJECTS = $(am_papercut_OBJECTS)
 papercut_LDADD = $(LDADD)
+papercut_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(papercut_LDFLAGS) \
+	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -168,6 +170,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 papercut_SOURCES = papercut.h main.c args.c errors.c stat.c
+papercut_LDFLAGS = -lpthread
 all: all-am
 
 .SUFFIXES:
@@ -244,7 +247,7 @@ clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 papercut$(EXEEXT): $(papercut_OBJECTS) $(papercut_DEPENDENCIES) $(EXTRA_papercut_DEPENDENCIES) 
 	@rm -f papercut$(EXEEXT)
-	$(LINK) $(papercut_OBJECTS) $(papercut_LDADD) $(LIBS)
+	$(papercut_LINK) $(papercut_OBJECTS) $(papercut_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
