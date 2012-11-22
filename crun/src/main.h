@@ -28,7 +28,7 @@
 
 /* Global Veriables */
 char *program_name;                 // Program Name
-char *program_version = "0.1.2";    // Program Version
+char *program_version = "0.1.3";    // Program Version
 
 /* Prototypes */
 void print_usage(void);
